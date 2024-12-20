@@ -73,7 +73,7 @@
     <div class="container">
         <h1>Git ignore generator</h1>
         <form id="searchForm">
-            <input type="text" placeholder="Enter your command" aria-label="Command input">
+            <input type="text" id="searchInput" placeholder="Enter framework or OS (e.g., windows, node)" aria-label="Command input">
             <button type="submit">Submit</button>
         </form>
         <div id="result"></div>
@@ -81,16 +81,34 @@
 
     <script>
         document.getElementById('searchForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Prevent form from submitting normally
+            e.preventDefault();
             
             try {
+                // Get the search term
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+                
                 // Fetch the JSON file
                 const response = await fetch('/data/templates.json');
                 const data = await response.json();
                 
-                // Display the JSON data
+                // Search through the JSON data
+                let result = null;
+                
+                // Check each category (frameworks, os)
+                for (const category in data) {
+                    if (data[category][searchTerm]) {
+                        result = data[category][searchTerm];
+                        break;
+                    }
+                }
+                
+                // Display the result
                 const resultDiv = document.getElementById('result');
-                resultDiv.textContent = JSON.stringify(data, null, 2);
+                if (result) {
+                    resultDiv.textContent = result.join('\n');
+                } else {
+                    resultDiv.textContent = 'No matching template found';
+                }
             } catch (error) {
                 console.error('Error:', error);
                 const resultDiv = document.getElementById('result');
