@@ -1,0 +1,26 @@
+{
+  "frameworks": {
+    "node": [
+      "node_modules/",
+      "npm-debug.log",
+      ".env"
+    ],
+    "react": [
+      "build/",
+      ".env.local",
+      ".env.development.local"
+    ]
+  },
+  "os": {
+    "macos": [
+      ".DS_Store",
+      ".AppleDouble",
+      ".LSOverride"
+    ],
+    "windows": [
+      "Thumbs.db",
+      "Desktop.ini",
+      "*.lnk"
+    ]
+  }
+}
