@@ -100,48 +100,56 @@
     document.getElementById('searchForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         try {
-            // Split the input by commas and clean each term
             const searchTerms = document.getElementById('searchInput').value
                 .toLowerCase()
                 .split(',')
                 .map(term => term.trim())
-                .filter(term => term); // Remove empty terms
+                .filter(term => term);
 
             const response = await fetch('/data/templates.json');
             const data = await response.json();
             
-            // Array to store all matched patterns
-            let allPatterns = new Set();
+            const resultDiv = document.getElementById('result');
+            
+            // Create sections for each term
+            let sections = [];
+            const timestamp = new Date().toISOString().split('T')[0];
+            
+            // Add header
+            sections.push(
+                `# gitignore file created for free with Git Tower`,
+                `# Generated on ${timestamp}`,
+                `# Includes: ${searchTerms.join(', ')}`,
+                '#\n'
+            );
 
-            // Search through each term
+            // Process each search term
             searchTerms.forEach(searchTerm => {
-                // Check in both frameworks and os categories
+                let patterns = [];
+                
+                // Check in frameworks
                 if (data.frameworks[searchTerm]) {
-                    data.frameworks[searchTerm].forEach(pattern => allPatterns.add(pattern));
+                    sections.push(
+                        `### ${searchTerm.toUpperCase()} ###`,
+                        `# ${getFrameworkDescription(searchTerm)}`,
+                        ...data.frameworks[searchTerm],
+                        '\n' // Add empty line between sections
+                    );
                 }
+                
+                // Check in OS
                 if (data.os[searchTerm]) {
-                    data.os[searchTerm].forEach(pattern => allPatterns.add(pattern));
+                    sections.push(
+                        `### ${searchTerm.toUpperCase()} ###`,
+                        `# ${getOSDescription(searchTerm)}`,
+                        ...data.os[searchTerm],
+                        '\n' // Add empty line between sections
+                    );
                 }
             });
 
-            const resultDiv = document.getElementById('result');
-            
-            if (allPatterns.size > 0) {
-                // Convert Set to Array and sort for consistent output
-                const patternsArray = Array.from(allPatterns).sort();
-                
-                // Format the output as a proper .gitignore file
-                const timestamp = new Date().toISOString().split('T')[0];
-                const formattedOutput = [
-                    `# gitignore file created for free with Git Tower`,
-                    `# Generated on ${timestamp}`,
-                    `# Includes: ${searchTerms.join(', ')}`,
-                    '#',
-                    ...patternsArray,
-                    '' // Add an empty line at the end
-                ].join('\n');
-
-                // Create the result HTML
+            if (sections.length > 4) { // More than just the header
+                const formattedOutput = sections.join('\n');
                 resultDiv.innerHTML = `
                     <pre>${formattedOutput}</pre>
                     <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
@@ -155,6 +163,33 @@
             resultDiv.textContent = 'Error loading templates';
         }
     });
+
+    // Helper function to get framework descriptions
+    function getFrameworkDescription(framework) {
+        const descriptions = {
+            node: 'Node.js dependency directory, logs, and environment files',
+            react: 'React build directory and environment files',
+            python: 'Python compiled files, virtual environments, and cache',
+            java: 'Java compiled files, build directories, and IDE files',
+            angular: 'Angular build files, dependencies, and IDE settings',
+            vue: 'Vue.js build files and development artifacts',
+            django: 'Django specific files, database, and media files',
+            dotnet: '.NET build outputs and development files',
+            flutter: 'Flutter/Dart build files and dependencies',
+            laravel: 'Laravel framework specific files and directories'
+        };
+        return descriptions[framework] || `${framework} specific files`;
+    }
+
+    // Helper function to get OS descriptions
+    function getOSDescription(os) {
+        const descriptions = {
+            windows: 'Windows operating system specific files',
+            macos: 'macOS operating system specific files',
+            linux: 'Linux operating system specific files'
+        };
+        return descriptions[os] || `${os} specific files`;
+    }
 
     function copyToClipboard() {
         const preElement = document.querySelector('#result pre');
