@@ -123,9 +123,8 @@
                     // Format the output as a proper .gitignore file
                     const timestamp = new Date().toISOString().split('T')[0];
                     const formattedOutput = [
-                        `# ${searchTerm} gitignore file`,
+                        `# gitignore file created for free with Git Tower`,
                         `# Generated on ${timestamp}`,
-                        `# Category: ${category}`,
                         '#',
                         ...result,
                         '' // Add an empty line at the end
