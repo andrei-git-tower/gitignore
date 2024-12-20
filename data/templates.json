@@ -63,7 +63,7 @@
       "*.tsbuildinfo",
       "# Optional REPL history",
       ".node_repl_history"
-    ]
+    ],
     "react": [
       "build/",
       ".env.local",
