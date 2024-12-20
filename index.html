@@ -60,12 +60,29 @@
         button:hover {
             background-color: #e6b200;
         }
-         #result {
+        #result {
             margin-top: 2rem;
             background-color: rgba(255, 255, 255, 0.1);
             padding: 1rem;
             border-radius: 0.25rem;
             white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        .copy-button {
+            background-color: #ffc600;
+            color: #164067;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .copy-button:hover {
+            background-color: #e6b200;
         }
     </style>
 </head>
@@ -84,30 +101,43 @@
             e.preventDefault();
             
             try {
-                // Get the search term
                 const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-                
-                // Fetch the JSON file
                 const response = await fetch('/data/templates.json');
                 const data = await response.json();
                 
-                // Search through the JSON data
                 let result = null;
+                let category = '';
                 
-                // Check each category (frameworks, os)
-                for (const category in data) {
-                    if (data[category][searchTerm]) {
-                        result = data[category][searchTerm];
+                // Find the matching template and its category
+                for (const cat in data) {
+                    if (data[cat][searchTerm]) {
+                        result = data[cat][searchTerm];
+                        category = cat;
                         break;
                     }
                 }
                 
-                // Display the result
                 const resultDiv = document.getElementById('result');
+                
                 if (result) {
-                    resultDiv.textContent = result.join('\n');
+                    // Format the output as a proper .gitignore file
+                    const timestamp = new Date().toISOString().split('T')[0];
+                    const formattedOutput = [
+                        `# ${searchTerm} gitignore file`,
+                        `# Generated on ${timestamp}`,
+                        `# Category: ${category}`,
+                        '#',
+                        ...result,
+                        '' // Add an empty line at the end
+                    ].join('\n');
+
+                    // Create the result HTML
+                    resultDiv.innerHTML = `
+                        <pre>${formattedOutput}</pre>
+                        <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+                    `;
                 } else {
-                    resultDiv.textContent = 'No matching template found';
+                    resultDiv.innerHTML = 'No matching template found';
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -115,6 +145,23 @@
                 resultDiv.textContent = 'Error loading templates';
             }
         });
+
+        function copyToClipboard() {
+            const preElement = document.querySelector('#result pre');
+            if (preElement) {
+                const textToCopy = preElement.textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const copyButton = document.querySelector('.copy-button');
+                    const originalText = copyButton.textContent;
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.textContent = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            }
+        }
     </script>
 </body>
 </html>
