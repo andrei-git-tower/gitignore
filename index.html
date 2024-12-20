@@ -97,70 +97,81 @@
     </div>
 
     <script>
-        document.getElementById('searchForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+    document.getElementById('searchForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        try {
+            // Split the input by commas and clean each term
+            const searchTerms = document.getElementById('searchInput').value
+                .toLowerCase()
+                .split(',')
+                .map(term => term.trim())
+                .filter(term => term); // Remove empty terms
+
+            const response = await fetch('/data/templates.json');
+            const data = await response.json();
             
-            try {
-                const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-                const response = await fetch('/data/templates.json');
-                const data = await response.json();
-                
-                let result = null;
-                let category = '';
-                
-                // Find the matching template and its category
-                for (const cat in data) {
-                    if (data[cat][searchTerm]) {
-                        result = data[cat][searchTerm];
-                        category = cat;
-                        break;
-                    }
-                }
-                
-                const resultDiv = document.getElementById('result');
-                
-                if (result) {
-                    // Format the output as a proper .gitignore file
-                    const timestamp = new Date().toISOString().split('T')[0];
-                    const formattedOutput = [
-                        `# gitignore file created for free with Git Tower`,
-                        `# Generated on ${timestamp}`,
-                        '#',
-                        ...result,
-                        '' // Add an empty line at the end
-                    ].join('\n');
+            // Array to store all matched patterns
+            let allPatterns = new Set();
 
-                    // Create the result HTML
-                    resultDiv.innerHTML = `
-                        <pre>${formattedOutput}</pre>
-                        <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
-                    `;
-                } else {
-                    resultDiv.innerHTML = 'No matching template found';
+            // Search through each term
+            searchTerms.forEach(searchTerm => {
+                // Check in both frameworks and os categories
+                if (data.frameworks[searchTerm]) {
+                    data.frameworks[searchTerm].forEach(pattern => allPatterns.add(pattern));
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                const resultDiv = document.getElementById('result');
-                resultDiv.textContent = 'Error loading templates';
-            }
-        });
+                if (data.os[searchTerm]) {
+                    data.os[searchTerm].forEach(pattern => allPatterns.add(pattern));
+                }
+            });
 
-        function copyToClipboard() {
-            const preElement = document.querySelector('#result pre');
-            if (preElement) {
-                const textToCopy = preElement.textContent;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const copyButton = document.querySelector('.copy-button');
-                    const originalText = copyButton.textContent;
-                    copyButton.textContent = 'Copied!';
-                    setTimeout(() => {
-                        copyButton.textContent = originalText;
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Failed to copy text: ', err);
-                });
+            const resultDiv = document.getElementById('result');
+            
+            if (allPatterns.size > 0) {
+                // Convert Set to Array and sort for consistent output
+                const patternsArray = Array.from(allPatterns).sort();
+                
+                // Format the output as a proper .gitignore file
+                const timestamp = new Date().toISOString().split('T')[0];
+                const formattedOutput = [
+                    `# gitignore file created for free with Git Tower`,
+                    `# Generated on ${timestamp}`,
+                    `# Includes: ${searchTerms.join(', ')}`,
+                    '#',
+                    ...patternsArray,
+                    '' // Add an empty line at the end
+                ].join('\n');
+
+                // Create the result HTML
+                resultDiv.innerHTML = `
+                    <pre>${formattedOutput}</pre>
+                    <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+                `;
+            } else {
+                resultDiv.innerHTML = 'No matching templates found';
             }
+        } catch (error) {
+            console.error('Error:', error);
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Error loading templates';
         }
-    </script>
+    });
+
+    function copyToClipboard() {
+        const preElement = document.querySelector('#result pre');
+        if (preElement) {
+            const textToCopy = preElement.textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyButton = document.querySelector('.copy-button');
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    }
+</script>
 </body>
 </html>
