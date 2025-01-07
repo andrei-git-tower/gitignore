@@ -50,19 +50,18 @@
             border-radius: 0.25rem;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #e6b200;
+button:hover {
+    background-color: #e6b200;
         }
-       #result {
-            margin-top: 2rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 0.25rem;
-            white-space: pre-wrap;
-            font-family: monospace;
-            max-height: 400px; /* Adjust height as needed */
-            overflow-y: auto; /* Enable vertical scrolling */
-        }
+
+#result {
+    margin-top: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    white-space: pre-wrap; /* Preserve line breaks */
+    font-family: monospace; /* Use monospace font for code */
+}
         
         #result pre {
             margin: 0;
