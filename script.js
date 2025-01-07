@@ -1,6 +1,4 @@
-
-<script>
-    document.getElementById('searchForm').addEventListener('submit', async function (e) {
+document.getElementById('searchForm').addEventListener('submit', async function (e) {
         e.preventDefault();
         try {
             const searchTerms = document.getElementById('searchInput').value
@@ -155,4 +153,3 @@
             });
         }
     }
-</script>
