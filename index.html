@@ -97,7 +97,7 @@
     </div>
 
     <script>
-    document.getElementById('searchForm').addEventListener('submit', async function(e) {
+    document.getElementById('searchForm').addEventListener('submit', async function (e) {
         e.preventDefault();
         try {
             const searchTerms = document.getElementById('searchInput').value
@@ -108,43 +108,45 @@
 
             const response = await fetch('/data/templates.json');
             const data = await response.json();
-            
+
             const resultDiv = document.getElementById('result');
-            
+
             // Create sections for each term
             let sections = [];
             const timestamp = new Date().toISOString().split('T')[0];
-            
+
             // Add header
             sections.push(
                 `# gitignore file created for free with Git Tower`,
                 `# Generated on ${timestamp}`,
                 `# Includes: ${searchTerms.join(', ')}`,
-                ''
+                '' // Add an empty line after the header
             );
 
             // Process each search term
             searchTerms.forEach(searchTerm => {
-                let patterns = [];
-                
-                // Check in frameworks
                 if (data.frameworks[searchTerm]) {
                     sections.push(
-                        `### ${searchTerm.toUpperCase()} ###`,
+                        `### ${capitalize(searchTerm)} ###`,
                         `# ${getFrameworkDescription(searchTerm)}`,
-                        ...data.frameworks[searchTerm],
-                        '' // Add empty line between sections
+                        '' // Add an empty line before the patterns section
                     );
+
+                    // Add patterns with empty lines between logical groups
+                    sections.push(...insertEmptyLines(data.frameworks[searchTerm]));
+                    sections.push(''); // Add an empty line after the section
                 }
-                
-                // Check in OS
+
                 if (data.os[searchTerm]) {
                     sections.push(
-                        `### ${searchTerm.toUpperCase()} ###`,
+                        `### ${capitalize(searchTerm)} ###`,
                         `# ${getOSDescription(searchTerm)}`,
-                        ...data.os[searchTerm],
-                        '' // Add empty line between sections
+                        '' // Add an empty line before the patterns section
                     );
+
+                    // Add patterns with empty lines between logical groups
+                    sections.push(...insertEmptyLines(data.os[searchTerm]));
+                    sections.push(''); // Add an empty line after the section
                 }
             });
 
@@ -191,6 +193,25 @@
         return descriptions[os] || `${os} specific files`;
     }
 
+    // Helper function to capitalize terms
+    function capitalize(term) {
+        return term.charAt(0).toUpperCase() + term.slice(1);
+    }
+
+    // Helper function to add empty lines between logical groups of patterns
+    function insertEmptyLines(patterns) {
+        const groupedPatterns = [];
+        patterns.forEach((pattern, index) => {
+            groupedPatterns.push(pattern);
+            
+            // Add an empty line after every logical group (you can customize this logic)
+            if ((index + 1) % 5 === 0 && index !== patterns.length - 1) {
+                groupedPatterns.push('');
+            }
+        });
+        return groupedPatterns;
+    }
+
     function copyToClipboard() {
         const preElement = document.querySelector('#result pre');
         if (preElement) {
@@ -208,5 +229,6 @@
         }
     }
 </script>
+
 </body>
 </html>
