@@ -74,8 +74,12 @@
                 const formattedOutput = sections.join('\n');
                 resultDiv.innerHTML = `
                     <pre>${formattedOutput}</pre>
-                    <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
                 `;
+                
+                // Add the copy button after the result div
+                resultDiv.insertAdjacentHTML('afterend', `
+                    <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+                `);
             } else {
                 resultDiv.innerHTML = 'No matching templates found';
             }
