@@ -127,6 +127,16 @@
         return descriptions[os] || `${os} specific files`;
     }
 
+    // Add this new helper function for environment descriptions
+    function getEnvironmentDescription(environment) {
+        const descriptions = {
+            docker: 'Docker environment specific files and directories',
+            kubernetes: 'Kubernetes configuration and deployment files',
+            terraform: 'Terraform state and configuration files'
+        };
+        return descriptions[environment] || `${environment} environment specific files`;
+    }
+
     // Helper function to capitalize terms
     function capitalize(term) {
         return term.charAt(0).toUpperCase() + term.slice(1);
