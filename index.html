@@ -120,7 +120,7 @@
                 `# gitignore file created for free with Git Tower`,
                 `# Generated on ${timestamp}`,
                 `# Includes: ${searchTerms.join(', ')}`,
-                '#\n'
+                ''
             );
 
             // Process each search term
@@ -133,7 +133,7 @@
                         `### ${searchTerm.toUpperCase()} ###`,
                         `# ${getFrameworkDescription(searchTerm)}`,
                         ...data.frameworks[searchTerm],
-                        '\n' // Add empty line between sections
+                        '' // Add empty line between sections
                     );
                 }
                 
@@ -143,7 +143,7 @@
                         `### ${searchTerm.toUpperCase()} ###`,
                         `# ${getOSDescription(searchTerm)}`,
                         ...data.os[searchTerm],
-                        '\n' // Add empty line between sections
+                        '' // Add empty line between sections
                     );
                 }
             });
