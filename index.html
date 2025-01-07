@@ -68,6 +68,16 @@
                     sections.push(...insertEmptyLines(data.os[searchTerm]));
                     sections.push(''); // Add an empty line after the section
                 }
+
+                if (data.environment_specific_files[searchTerm]) {
+                    sections.push(
+                        `### ${capitalize(searchTerm)} ###`,
+                        `# ${getEnvironmentDescription(searchTerm)}`,
+                        ''
+                    );
+                    sections.push(...insertEmptyLines(data.environment_specific_files[searchTerm]));
+                    sections.push('');
+                }
             });
 
             if (sections.length > 4) { // More than just the header
