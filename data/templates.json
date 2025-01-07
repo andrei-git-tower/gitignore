@@ -242,6 +242,408 @@
       "*.sqlite",
       ".idea",
       ".vscode"
+    ],
+    "flask": [
+      "# Flask specific files",
+      "__pycache__/",
+      "*.pyc",
+      "*.pyo",
+      "*.pyd",
+      ".env",
+      ".venv/",
+      "instance/",
+      "migrations/"
+    ],
+    "ruby_on_rails": [
+      "# Ruby on Rails specific files",
+      "/log/",
+      "/tmp/",
+      "/db/*.sqlite3",
+      "/db/*.sqlite3-journal",
+      "/public/system/",
+      "/public/uploads/",
+      ".env"
+    ],
+    "spring": [
+      "# Spring specific files",
+      "*.class",
+      "*.war",
+      "*.ear",
+      ".gradle/",
+      "build/",
+      "target/",
+      ".idea/",
+      "*.iml"
+    ],
+    "asp_net": [
+      "# ASP.NET specific files",
+      "bin/",
+      "obj/",
+      "*.user",
+      "*.suo",
+      "*.pdb",
+      "*.cache",
+      "*.log"
+    ],
+    "svelte": [
+      "# Svelte specific files",
+      "node_modules/",
+      "build/",
+      ".cache/",
+      "*.log"
+    ],
+    "next_js": [
+      "# Next.js specific files",
+      ".next/",
+      ".env.local",
+      ".env.development.local",
+      ".env.test.local",
+      ".env.production.local"
+    ],
+    "express": [
+      "# Express.js specific files",
+      "node_modules/",
+      "logs/",
+      "*.log",
+      ".env"
+    ],
+    "meteor": [
+      "# Meteor.js specific files",
+      ".meteor/local/",
+      "node_modules/",
+      ".npm/"
+    ],
+    "nuxt_js": [
+      "# Nuxt.js specific files",
+      ".nuxt/",
+      "node_modules/",
+      ".env"
+    ],
+    "tensorflow": [
+      "# TensorFlow specific files",
+      "__pycache__/",
+      "*.pyc",
+      "*.pyo",
+      "*.pyd"
+    ],
+    "javascript": [
+      "# JavaScript specific files",
+      "node_modules/",
+      "*.log",
+      "npm-debug.log*",
+      "yarn-debug.log*",
+      ".env",
+      ".cache/",
+      "dist/",
+      "coverage/"
+    ],
+    "html": [
+      "# HTML specific files",
+      "*.html",
+      "*.htm",
+      ".DS_Store"
+    ],
+    "css": [
+      "# CSS specific files",
+      "*.css.map",
+      ".sass-cache/",
+      "*.scssc"
+    ],
+    "sql": [
+      "# SQL specific files",
+      "*.sql.bak",
+      "*.sql~"
+    ],
+    "typescript": [
+      "# TypeScript specific files",
+      "*.tsbuildinfo",
+      "node_modules/",
+      ".env",
+      "dist/"
+    ],
+    "bash": [
+      "# Bash specific files",
+      "*.sh~",
+      "*.bash_history"
+    ],
+    "shell": [
+      "# Shell specific files",
+      "*.sh~",
+      "*.shell_history"
+    ],
+    "csharp": [
+      "# C# specific files",
+      "bin/",
+      "obj/",
+      "*.user",
+      "*.suo"
+    ],
+    "c": [
+      "# C specific files",
+      "*.o",
+      "*.out",
+      "*.a"
+    ],
+    "cpp": [
+      "# C++ specific files",
+      "*.o",
+      "*.out",
+      "*.a"
+    ],
+    "php": [
+      "# PHP specific files",
+      ".env",
+      "vendor/",
+      "composer.lock"
+    ],
+    "powershell": [
+      "# PowerShell specific files",
+      "*.ps1~"
+    ],
+    "go": [
+      "# Go specific files",
+      "*.exe",
+      "*.test",
+      "vendor/"
+    ],
+    "rust": [
+      "# Rust specific files",
+      "/target/",
+      "**/*.rs.bk"
+    ],
+    "kotlin": [
+      "# Kotlin specific files",
+      "/build/",
+      "/out/"
+    ],
+  "lua": [
+      "# Lua specific files",
+      "*.luac",
+      "*.out",
+      "*.log",
+      ".DS_Store"
+    ],
+    "dart": [
+      "# Dart specific files",
+      ".dart_tool/",
+      "packages/",
+      "*.lock",
+      ".pub/"
+    ],
+    "assembly": [
+      "# Assembly specific files",
+      "*.o",
+      "*.lst",
+      "*.map",
+      "*.bin"
+    ],
+    "ruby": [
+      "# Ruby specific files",
+      "/log/",
+      "/tmp/",
+      "/.bundle/",
+      "/vendor/bundle/",
+      ".env"
+    ],
+    "swift": [
+      "# Swift specific files",
+      "build/",
+      "DerivedData/",
+      "*.xcodeproj/*",
+      "*.xcworkspace/*"
+    ],
+    "r": [
+      "# R specific files",
+      ".Rhistory",
+      ".RData",
+      ".Rproj.user/"
+    ],
+    "visual_basic": [
+      "# Visual Basic specific files",
+      "*.exe",
+      "*.dll",
+      "*.pdb",
+      "obj/",
+      "bin/"
+    ],
+    "matlab": [
+      "# MATLAB specific files",
+      "*.asv",
+      "*.m~",
+      "*.mlx~"
+    ],
+    "vba": [
+      "# VBA specific files",
+      "*.bas~",
+      "*.cls~",
+      "*.frm~"
+    ],
+    "groovy": [
+      "# Groovy specific files",
+      ".gradle/",
+      "build/",
+      "*.class"
+    ],
+    "scala": [
+      "# Scala specific files",
+      ".idea/",
+      ".metals/",
+      ".bloop/",
+      ".ammonite/"
+    ],
+    "perl": [
+      "# Perl specific files",
+      "*.pl~",
+      "*.pm~",
+      ".build/"
+    ],
+    "gdscript": [
+      "# GDScript (Godot) specific files",
+      ".godot/",
+      ".import/",
+      "*.cfg",
+      "*.import",
+      "export_presets.cfg"
+    ],
+    "objective_c": [
+      "# Objective-C specific files",
+      "*.o",
+      "*.d",
+      "*.obj",
+      "*.exe",
+      "*.dll",
+      "*.app/",
+      "*.ipa/",
+      "build/"
+    ],
+    "elixir": [
+      "# Elixir specific files",
+      "_build/",
+      "deps/",
+      "*.beam"
+    ],
+    "haskell": [
+      "# Haskell specific files",
+      "dist-newstyle/",
+      ".stack-work/",
+      "*.hi",
+      "*.o"
+    ],
+    "delphi": [
+      "# Delphi specific files",
+      "__history/",
+      "*.dcu",
+      "*.bpl",
+      "*.dcp",
+      "Win32/Debug/",
+      "Win32/Release/"
+    ],
+    "micropython": [
+      "# MicroPython specific files",
+      "__pycache__/",
+      "*.mpy"
+    ],
+    "lisp": [
+      "# Lisp specific files",
+      "*~",
+      "*.fasl",
+      "*.ufasl",
+      ".cache/"
+    ],
+    "clojure": [
+      "# Clojure specific files",
+      ".lein-repl-history",
+      ".nrepl-port",
+      "target/"
+    ],
+    "julia": [
+      "# Julia specific files",
+      ".julia_history",
+      ".julia_env/",
+      ".vscode/"
+    ],
+    "zig": [
+      "# Zig specific files",
+      "zig-cache/",
+      "zig-out/"
+    ],
+    "fortran": [
+      "# Fortran specific files",
+      "*.mod",
+      "*.o"
+    ],
+    "solidity": [
+      "# Solidity specific files",
+      "cache/",
+      "artifacts/",
+      "*.bin",
+      "*.abi",
+      ".env"
+    ],
+    "ada": [
+      "# Ada specific files",
+      "*.ali",
+      "*.o",
+      "*.exe"
+    ],
+    "erlang": [
+      "# Erlang specific files",
+      "*.beam",
+      "*.dump",
+      "ebin/",
+      "_build/",
+      "rebar.lock"
+    ],
+    "fsharp": [
+      "# F# specific files",
+      "*.dll",
+      "*.exe",
+      "*.pdb",
+      "obj/",
+      "bin/"
+    ],
+    "apex": [
+      "# Apex specific files",
+      ".sfdx/",
+      "*.log",
+      ".vscode/",
+      ".env"
+    ],
+    "prolog": [
+      "# Prolog specific files",
+      "*.pl~",
+      "*.pro~",
+      ".swp"
+    ],
+    "ocaml": [
+      "# OCaml specific files",
+      "_build/",
+      "*.cmx",
+      "*.cmi",
+      "*.o"
+    ],
+    "cobol": [
+      "# COBOL specific files",
+      "*.lst",
+      "*.o",
+      "*.int"
+    ],
+    "crystal": [
+      "# Crystal specific files",
+      ".crystal/",
+      ".shards/",
+      "*.dwarf"
+    ],
+    "nim": [
+      "# Nim specific files",
+      "nimcache/",
+      "*.exe",
+      "*.dll"
+    ],
+    "zephyr": [
+      "# Zephyr specific files (embedded development)",
+      "build/",
+      ".config"
     ]
   },
   "os": {
@@ -291,5 +693,84 @@
       ".swo",
       ".swn"
     ]
-  }
+  },
+    "environment_specific_files": {
+  "docker": [
+    "# Common directories to exclude",
+    "node_modules/",
+    "bower_components/",
+    "target/",
+    "dist/",
+    "build/",
+    ".cache/",
+
+    "# Log files",
+    "*.log",
+    "logs/",
+
+    "# Git-related files",
+    ".git/",
+    ".gitignore",
+
+    "# Environment files",
+    ".env",
+    ".env.*",
+
+    "# Temporary files",
+    "*.tmp",
+    "*.swp",
+
+    "# IDE-specific files",
+    ".idea/",
+    ".vscode/",
+
+    "# Docker-specific files",
+    "Dockerfile.*",
+    "docker-compose.override.yml",
+
+    "# CI/CD-related files",
+    ".dockerignore"
+],
+  "kubernetes": [
+       "# Kubernetes configuration files",
+      "*.yaml", 
+      "*.yml",
+  
+      "# Helm-related files (if using Helm)",
+      "charts/",
+      "templates/",
+      "*.tgz",
+  
+      "# Kustomize-related files (if using Kustomize)",
+      "kustomization.yaml",
+  
+      "# Secrets and sensitive data",
+      "*.secret.yaml",
+      "*.config.yaml",
+  
+      "# Logs and temporary files",
+      "*.log",
+      "*.tmp"
+  ],
+  "terraform": [
+    "# Terraform state files",
+    "*.tfstate",
+    "*.tfstate.backup",
+
+    "# Crash logs generated by Terraform",
+    "crash.log",
+
+    "# Terraform plan output file",
+    "*.tfplan",
+
+    "# Sensitive variable definitions (if any)",
+    "*.auto.tfvars",
+
+    "# Terraform working directory",
+    ".terraform/",
+    
+    "# Lock file for provider versions",
+    ".terraform.lock.hcl"
+]
+}
 }
