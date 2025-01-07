@@ -694,7 +694,7 @@
       ".swn"
     ]
   },
-    "environment_specific_files": {
+  "environment_specific_files": {
   "docker": [
     "# Common directories to exclude",
     "node_modules/",
