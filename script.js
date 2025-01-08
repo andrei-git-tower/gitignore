@@ -113,6 +113,56 @@ document.getElementById('searchForm').addEventListener('submit', async function(
                 sections.push(...insertEmptyLines(data.security_and_credentials[searchTerm]));
                 sections.push('');
             }
+
+            if (data.game_engines[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getGameEngineDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.game_engines[searchTerm]));
+                sections.push('');
+            }
+        
+            if (data.data_science[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getDataScienceDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.data_science[searchTerm]));
+                sections.push('');
+            }
+        
+            if (data.cloud_providers[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getCloudProviderDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.cloud_providers[searchTerm]));
+                sections.push('');
+            }
+        
+            if (data.cicd_tools[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getCICDToolDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.cicd_tools[searchTerm]));
+                sections.push('');
+            }
+        
+            if (data.basic[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getBasicDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.basic[searchTerm]));
+                sections.push('');
+            }
         });
 
         if (sections.length > 4) { // More than just the header
@@ -251,6 +301,71 @@ function getSecurityAndCredentialsDescription(securityItem) {
         tokens: 'Authentication and access tokens'
     };
     return descriptions[securityItem] || `${securityItem} security related files`;
+}
+
+function getGameEngineDescription(engine) {
+    const descriptions = {
+        unreal_engine: 'Unreal Engine generated files and build artifacts',
+        unity: 'Unity engine generated files and build outputs',
+        godot: 'Godot engine project files and build artifacts',
+        cryengine: 'CryEngine generated files and build outputs',
+        lumberyard: 'Amazon Lumberyard engine files and artifacts',
+        gamemaker: 'GameMaker Studio files and build outputs',
+        rpg_maker: 'RPG Maker project files and artifacts',
+        construct: 'Construct engine files and backups',
+        phaser: 'Phaser framework build files and artifacts',
+        cocos2d: 'Cocos2d engine files and build outputs'
+    };
+    return descriptions[engine] || `${engine} specific files`;
+}
+
+function getDataScienceDescription(tool) {
+    const descriptions = {
+        jupyter: 'Jupyter Notebook checkpoints and temporary files',
+        rstudio: 'RStudio project files and R environment',
+        spyder: 'Spyder IDE project settings and files',
+        anaconda: 'Anaconda environment files and configurations',
+        sagemath: 'SageMath specific files and outputs',
+        matlab: 'MATLAB autosave and temporary files',
+        tableau: 'Tableau workbook and data files',
+        powerbi: 'Power BI template and data files'
+    };
+    return descriptions[tool] || `${tool} specific files`;
+}
+
+function getCloudProviderDescription(provider) {
+    const descriptions = {
+        aws: 'AWS credentials and configuration files',
+        gcp: 'Google Cloud Platform service accounts and configs',
+        azure: 'Azure configuration and credential files',
+        oracle_cloud: 'Oracle Cloud Infrastructure configurations',
+        ibm_cloud: 'IBM Cloud credentials and settings',
+        digitalocean: 'DigitalOcean configuration files',
+        heroku: 'Heroku configuration and environment files',
+        cloudflare: 'Cloudflare credentials and configurations'
+    };
+    return descriptions[provider] || `${provider} specific files`;
+}
+
+function getCICDToolDescription(tool) {
+    const descriptions = {
+        jenkins: 'Jenkins pipeline and configuration files',
+        github_actions: 'GitHub Actions workflows and configurations',
+        gitlab_ci: 'GitLab CI configuration and cache files',
+        circle_ci: 'CircleCI configuration and build files',
+        travis_ci: 'Travis CI configuration and build files',
+        azure_devops: 'Azure DevOps pipeline configurations',
+        teamcity: 'TeamCity build configurations and settings',
+        bamboo: 'Bamboo CI server configurations and specs'
+    };
+    return descriptions[tool] || `${tool} specific files`;
+}
+
+function getBasicDescription(type) {
+    const descriptions = {
+        universal: 'Universal patterns that should be in every .gitignore'
+    };
+    return descriptions[type] || `${type} specific files`;
 }
 
 // Helper function to capitalize terms
