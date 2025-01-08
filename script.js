@@ -68,6 +68,51 @@ document.getElementById('searchForm').addEventListener('submit', async function(
                 sections.push(...insertEmptyLines(data.environment_specific_files[searchTerm]));
                 sections.push('');
             }
+            if (data.editors[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getEditorDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.editors[searchTerm]));
+                sections.push('');
+            }
+            if (data.vcs[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getVCSDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.vcs[searchTerm]));
+                sections.push('');
+            }
+            if (data.build_tools[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getBuildToolDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.build_tools[searchTerm]));
+                sections.push('');
+            }
+            if (data.package_managers[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getPackageManagerDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.package_managers[searchTerm]));
+                sections.push('');
+            }
+            if (data.security_and_credentials[searchTerm]) {
+                sections.push(
+                    `### ${capitalize(searchTerm)} ###`,
+                    `# ${getSecurityAndCredentialsDescription(searchTerm)}`,
+                    ''
+                );
+                sections.push(...insertEmptyLines(data.security_and_credentials[searchTerm]));
+                sections.push('');
+            }
         });
 
         if (sections.length > 4) { // More than just the header
