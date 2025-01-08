@@ -118,6 +118,12 @@ document.getElementById('searchForm').addEventListener('submit', async function(
         if (sections.length > 4) { // More than just the header
             const formattedOutput = sections.join('\n');
             resultDiv.innerHTML = `<pre>${formattedOutput}</pre>`;
+            
+            // Remove any existing copy buttons
+            const existingButtons = document.querySelectorAll('.copy-button');
+            existingButtons.forEach(button => button.remove());
+            
+            // Add new copy button
             resultDiv.insertAdjacentHTML('afterend', `
                 <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
             `);
