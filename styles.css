@@ -24,7 +24,11 @@ h1 {
 
 form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
 }
 
 input[type="text"] {
@@ -48,6 +52,7 @@ input[type="text"]:focus {
 }
 
 button {
+    width: 25%;
     background-color: #ffc600;
     color: #164067;
     border: none;
@@ -56,6 +61,7 @@ button {
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
+    margin: 0;
 }
 
 button:hover {
@@ -92,11 +98,9 @@ button:hover {
 
 .search-container {
     position: relative;
-    flex: 1; 
-    margin-right: 10px; 
+    width: 75%; 
 }
 
-/* Style for the form to make it a row */
 #searchForm {
     display: flex;
     align-items: center;
@@ -104,22 +108,24 @@ button:hover {
     gap: 10px; /* Space between elements */
 }
 
-/* Input styling */
 #searchInput {
-    width: 100%; /* Make input take full width of its container */
-    padding: 8px 12px;
-    border: 1px solid #ddd;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ffffff;
     border-radius: 4px;
+    background-color: #164067;
+    color: #ffffff;
+    margin-bottom: 0; /* Remove margin bottom */
 }
 
-/* Suggestions styling */
 .suggestions-container {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: #2f3640; /* Dark background */
-    border: 1px solid #353b48;
+    background: #1a4b7c; /* Changed to match your theme */
+    border: 1px solid #ffffff;
     border-top: none;
     max-height: 200px;
     overflow-y: auto;
@@ -132,9 +138,9 @@ button:hover {
 .suggestion-item {
     padding: 8px 12px;
     cursor: pointer;
-    color: #ffffff; /* White text */
+    color: #ffffff;
 }
 
 .suggestion-item:hover {
-    background-color: #353b48; /* Darker shade for hover */
+    background-color: #1e5892; /* Darker shade for hover */
 }
