@@ -730,7 +730,7 @@
   
       "# CI/CD-related files",
       ".dockerignore"
-],
+  ],
     "kubernetes": [
       "# Kubernetes configuration files",
       "*.yaml", 
@@ -771,7 +771,7 @@
       
       "# Lock file for provider versions",
       ".terraform.lock.hcl"
-]
+  ]
 },
   "editors": {
     "vim": [
@@ -848,7 +848,6 @@
         "/.emacs.desktop.lock",
         "*.elc",
         "auto-save-list",
-        ".\#*",
         ".eshell/",
         "/.sx/",
         "*.eld",
