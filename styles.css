@@ -92,28 +92,49 @@ button:hover {
 
 .search-container {
     position: relative;
-    width: 100%;
+    flex: 1; 
+    margin-right: 10px; 
 }
 
+/* Style for the form to make it a row */
+#searchForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px; /* Space between elements */
+}
+
+/* Input styling */
+#searchInput {
+    width: 100%; /* Make input take full width of its container */
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Suggestions styling */
 .suggestions-container {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
-    border: 1px solid #ddd;
+    background: #2f3640; /* Dark background */
+    border: 1px solid #353b48;
     border-top: none;
     max-height: 200px;
     overflow-y: auto;
     display: none;
     z-index: 1000;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .suggestion-item {
     padding: 8px 12px;
     cursor: pointer;
+    color: #ffffff; /* White text */
 }
 
 .suggestion-item:hover {
-    background-color: #f0f0f0;
+    background-color: #353b48; /* Darker shade for hover */
 }
