@@ -2252,7 +2252,7 @@
         "# MemoryCaptures can get excessive in size",
         "[Mm]emoryCaptures/",
         
-        "# Asset meta data should only be ignored when the corresponding asset is also ignored
+        "# Asset meta data should only be ignored when the corresponding asset is also ignored",
         "!/[Aa]ssets/**/*.meta",
         
         "# Visual Studio cache directory",
@@ -2432,7 +2432,7 @@
         "save/",
         "backup/",
         
-        # Build files
+        "# Build files",
         "*.exe",
         "*.zip",
         "*.rvdata2",
@@ -2465,11 +2465,11 @@
         "build/",
         "profiles/",
         
-        # Build files
+        "# Build files",
         "*.apk",
         "*.ipa",
         
-        # Project files
+        "# Project files",
         "*.ccs",
         "*.udf"
     ],
