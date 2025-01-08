@@ -123,6 +123,85 @@ document.getElementById('searchForm').addEventListener('submit', async function 
         return term.charAt(0).toUpperCase() + term.slice(1);
     }
 
+// Helper function to get editor descriptions
+function getEditorDescription(editor) {
+    const descriptions = {
+        vscode: 'Visual Studio Code editor settings and workspace files',
+        intellij: 'IntelliJ IDEA editor files and settings',
+        eclipse: 'Eclipse IDE specific files and settings',
+        sublime: 'Sublime Text editor files and workspace settings',
+        vim: 'Vim editor swap and temporary files',
+        atom: 'Atom editor settings and workspace files',
+        webstorm: 'WebStorm IDE specific files and settings',
+        phpstorm: 'PhpStorm IDE specific files and settings',
+        xcode: 'Xcode IDE files and build settings',
+        androidstudio: 'Android Studio IDE files and settings'
+    };
+    return descriptions[editor] || `${editor} editor specific files`;
+}
+
+// Helper function to get version control system descriptions
+function getVCSDescription(vcs) {
+    const descriptions = {
+        git: 'Git version control system files and directories',
+        svn: 'Subversion version control system files',
+        mercurial: 'Mercurial version control system files',
+        cvs: 'CVS version control system files',
+        bazaar: 'Bazaar version control system files'
+    };
+    return descriptions[vcs] || `${vcs} version control system files`;
+}
+
+// Helper function to get build tool descriptions
+function getBuildToolDescription(buildTool) {
+    const descriptions = {
+        maven: 'Maven build tool files and directories',
+        gradle: 'Gradle build tool files and directories',
+        ant: 'Apache Ant build tool files',
+        webpack: 'Webpack build configuration and cache',
+        gulp: 'Gulp build tool files and dependencies',
+        grunt: 'Grunt build tool files and configurations',
+        babel: 'Babel transpiler configuration and cache',
+        make: 'Make build system files and outputs',
+        cmake: 'CMake build system files and cache'
+    };
+    return descriptions[buildTool] || `${buildTool} build tool specific files`;
+}
+
+// Helper function to get package manager descriptions
+function getPackageManagerDescription(packageManager) {
+    const descriptions = {
+        npm: 'NPM package manager files and directories',
+        yarn: 'Yarn package manager files and cache',
+        pip: 'Python pip package manager files',
+        composer: 'PHP Composer package manager files',
+        nuget: 'NuGet package manager files and packages',
+        cargo: 'Rust Cargo package manager files',
+        gem: 'Ruby gems package manager files',
+        maven: 'Maven package manager repository files',
+        cocoapods: 'CocoaPods package manager files',
+        pub: 'Dart/Flutter pub package manager files'
+    };
+    return descriptions[packageManager] || `${packageManager} package manager specific files`;
+}
+
+// Helper function to get security and credentials descriptions
+function getSecurityAndCredentialsDescription(securityItem) {
+    const descriptions = {
+        ssh: 'SSH keys and configuration files',
+        ssl: 'SSL certificates and private keys',
+        apikeys: 'API keys and access tokens',
+        env: 'Environment files containing sensitive data',
+        credentials: 'Various credential files and tokens',
+        certificates: 'Digital certificates and related files',
+        secrets: 'Secret management files and configurations',
+        keys: 'Encryption and signing keys',
+        passwords: 'Password files and configurations',
+        tokens: 'Authentication and access tokens'
+    };
+    return descriptions[securityItem] || `${securityItem} security related files`;
+}
+
     // Helper function to add empty lines between logical groups of patterns
     function insertEmptyLines(patterns) {
         const groupedPatterns = [];
