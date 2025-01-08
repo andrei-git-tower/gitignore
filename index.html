@@ -10,9 +10,12 @@
     <div class="container">
         <h1>Git ignore generator</h1>
         <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="Enter framework or OS (e.g., windows, node)" aria-label="Command input">
-            <button type="submit">Submit</button>
-        </form>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Enter framework or OS (e.g., windows, node)" aria-label="Command input">
+        <div id="suggestions" class="suggestions-container"></div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
         <div id="result"></div>
     </div>
 
