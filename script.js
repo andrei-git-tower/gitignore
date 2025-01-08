@@ -465,12 +465,7 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
             div.className = 'suggestion-item';
             div.textContent = term;
             div.addEventListener('click', () => {
-                // Get current input value and split it into terms
-                const currentTerms = e.target.value.split(',').map(t => t.trim());
-                // Replace the last term with the selected suggestion
-                currentTerms[currentTerms.length - 1] = term;
-                // Update input value
-                e.target.value = currentTerms.join(', ');
+                addTag(term);
                 // Hide suggestions
                 suggestionsContainer.style.display = 'none';
             });
