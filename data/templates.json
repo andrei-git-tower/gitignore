@@ -1824,16 +1824,6 @@
         "maven-metadata-local.xml",
         ".maven_repos/"
     ],
-    "gradle": [
-        "# Gradle",
-        ".gradle/",
-        "gradle/",
-        "gradle-app.setting",
-        ".gradletasknamecache",
-        "gradle-wrapper.jar",
-        "gradle-wrapper.properties",
-        ".gradle-cache/"
-    ],
     "cocoapods": [
         "# CocoaPods (iOS)",
         "Pods/",
