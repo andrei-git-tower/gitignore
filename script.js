@@ -286,3 +286,84 @@ function copyToClipboard() {
         });
     }
 }
+
+// Add this at the start of your script
+let allTerms = [];
+
+// Function to initialize terms from your JSON data
+async function initializeTerms() {
+    try {
+        const response = await fetch('./data/templates.json');
+        const data = await response.json();
+        
+        // Collect all terms from different categories
+        allTerms = [
+            ...Object.keys(data.frameworks || {}),
+            ...Object.keys(data.os || {}),
+            ...Object.keys(data.environment_specific_files || {}),
+            ...Object.keys(data.editors || {}),
+            ...Object.keys(data.vcs || {}),
+            ...Object.keys(data.build_tools || {}),
+            ...Object.keys(data.package_managers || {}),
+            ...Object.keys(data.security_and_credentials || {})
+        ];
+        
+        // Remove duplicates
+        allTerms = [...new Set(allTerms)];
+    } catch (error) {
+        console.error('Error initializing terms:', error);
+    }
+}
+
+// Call this when your script loads
+initializeTerms();
+
+// Add event listener for input changes
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const input = e.target.value.toLowerCase();
+    const suggestionsContainer = document.getElementById('suggestions');
+    
+    // Clear previous suggestions
+    suggestionsContainer.innerHTML = '';
+    
+    // If input is less than 2 characters, hide suggestions
+    if (input.length < 2) {
+        suggestionsContainer.style.display = 'none';
+        return;
+    }
+    
+    // Filter terms based on input
+    const matchingTerms = allTerms.filter(term => 
+        term.toLowerCase().includes(input)
+    );
+    
+    // Display suggestions
+    if (matchingTerms.length > 0) {
+        matchingTerms.forEach(term => {
+            const div = document.createElement('div');
+            div.className = 'suggestion-item';
+            div.textContent = term;
+            div.addEventListener('click', () => {
+                // Get current input value and split it into terms
+                const currentTerms = e.target.value.split(',').map(t => t.trim());
+                // Replace the last term with the selected suggestion
+                currentTerms[currentTerms.length - 1] = term;
+                // Update input value
+                e.target.value = currentTerms.join(', ');
+                // Hide suggestions
+                suggestionsContainer.style.display = 'none';
+            });
+            suggestionsContainer.appendChild(div);
+        });
+        suggestionsContainer.style.display = 'block';
+    } else {
+        suggestionsContainer.style.display = 'none';
+    }
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+        document.getElementById('suggestions').style.display = 'none';
+    }
+});
