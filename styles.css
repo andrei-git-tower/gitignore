@@ -61,7 +61,9 @@ button {
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
-    margin: 0;
+    margin-left: 20px;
+    height: 40px; 
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -99,13 +101,15 @@ button:hover {
 .search-container {
     position: relative;
     width: 75%; 
+    display: flex;
+    align-items: center;
 }
 
 #searchForm {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 10px; /* Space between elements */
+    gap: 10px; 
 }
 
 #searchInput {
@@ -116,7 +120,9 @@ button:hover {
     border-radius: 4px;
     background-color: #164067;
     color: #ffffff;
-    margin-bottom: 0; /* Remove margin bottom */
+    margin-bottom: 0;
+    height: 40px; 
+    box-sizing: border-box;
 }
 
 .suggestions-container {
