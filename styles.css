@@ -150,3 +150,35 @@ button:hover {
 .suggestion-item:hover {
     background-color: #1e5892; /* Darker shade for hover */
 }
+
+.selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+    min-height: 30px;
+}
+
+.tag {
+    background-color: #e9ecef;
+    border-radius: 16px;
+    padding: 4px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.tag-remove {
+    cursor: pointer;
+    color: #666;
+    font-weight: bold;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 16px;
+}
+
+.tag-remove:hover {
+    color: #ff4444;
+}
