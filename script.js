@@ -1,13 +1,19 @@
+let selectedTags = new Set();
+
 document.getElementById('searchForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     try {
-        const searchTerms = document.getElementById('searchInput').value
-            .toLowerCase()
-            .split(',')
-            .map(term => term.trim())
+        // Use the selectedTags Set directly instead of getting value from input
+        const searchTerms = Array.from(selectedTags)
+            .map(term => term.toLowerCase())
             .filter(term => term);
 
-        let response;
+        if (searchTerms.length === 0) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Please select at least one item';
+            return;
+        }
+        
         try {
             response = await fetch('/data/templates.json');
             if (!response.ok) {
@@ -480,5 +486,58 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
 document.addEventListener('click', function(e) {
     if (!e.target.closest('.search-container')) {
         document.getElementById('suggestions').style.display = 'none';
+    }
+});
+
+function addTag(term) {
+    if (!selectedTags.has(term)) {
+        selectedTags.add(term);
+        const tagsContainer = document.getElementById('selectedTags');
+        const tagElement = document.createElement('div');
+        tagElement.className = 'tag';
+        tagElement.innerHTML = `
+            ${term}
+            <button class="tag-remove" onclick="removeTag('${term}')">&times;</button>
+        `;
+        tagsContainer.appendChild(tagElement);
+    }
+    // Clear the search input after adding a tag
+    document.getElementById('searchInput').value = '';
+    // Clear the suggestions
+    document.getElementById('suggestions').innerHTML = '';
+}
+
+// Function to remove a tag
+function removeTag(term) {
+    selectedTags.delete(term);
+    renderTags();
+}
+
+// Function to render all tags
+function renderTags() {
+    const tagsContainer = document.getElementById('selectedTags');
+    tagsContainer.innerHTML = '';
+    selectedTags.forEach(term => {
+        const tagElement = document.createElement('div');
+        tagElement.className = 'tag';
+        tagElement.innerHTML = `
+            ${term}
+            <button class="tag-remove" onclick="removeTag('${term}')">&times;</button>
+        `;
+        tagsContainer.appendChild(tagElement);
+    });
+}
+
+// Modify your suggestion click handler
+function handleSuggestionClick(term) {
+    addTag(term);
+}
+
+
+// Optional: Add keyboard support for adding tags
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.value.trim()) {
+        e.preventDefault();
+        addTag(this.value.trim());
     }
 });
