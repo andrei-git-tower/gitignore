@@ -6,8 +6,25 @@ document.getElementById('searchForm').addEventListener('submit', async function(
             .split(',')
             .map(term => term.trim())
             .filter(term => term);
-        const response = await fetch('/data/templates.json');
-        const data = await response.json();
+
+        let response;
+        try {
+            response = await fetch('/data/templates.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (fetchError) {
+            console.error('Fetch error:', fetchError);
+            throw new Error('Failed to fetch templates file');
+        }
+
+        let data;
+        try {
+            data = await response.json();
+        } catch (jsonError) {
+            console.error('JSON parsing error:', jsonError);
+            throw new Error('Failed to parse templates data');
+        }
         const resultDiv = document.getElementById('result');
         
         // Create sections for each term
