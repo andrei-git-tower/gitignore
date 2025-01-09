@@ -129,6 +129,7 @@ button:hover {
     width: 75%; 
     display: flex;
     align-items: center;
+    color: #000000;
 }
 
 #searchForm {
