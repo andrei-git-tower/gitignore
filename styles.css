@@ -172,7 +172,7 @@ button:hover {
 .suggestion-item {
     padding: 8px 12px;
     cursor: pointer;
-    color: #ffffff;
+    color: #000000;
 }
 
 .suggestion-item:hover {
