@@ -156,7 +156,8 @@ button:hover {
     top: 100%;
     left: 0;
     right: 0;
-    background: #1a4b7c; /* Changed to match your theme */
+    background: #ffffff;
+    color: #000000;
     border: 1px solid #ffffff;
     border-top: none;
     max-height: 200px;
