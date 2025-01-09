@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git ignore generator</title>
-<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Git ignore generator</h1>
-        <form id="searchForm">
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Enter framework or OS (e.g., windows, node)" aria-label="Command input">
-        <div id="suggestions" class="suggestions-container"></div>
+    <div class="top-section">
+        <div class="section-content">
+            <h1>Git ignore generator</h1>
+            <form id="searchForm">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Enter framework or OS (e.g., windows, node)" aria-label="Command input">
+                    <div id="suggestions" class="suggestions-container"></div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="selectedTags" class="selected-tags"></div>
+        </div>
     </div>
-    <button type="submit">Submit</button>
-</form>
-        <div id="selectedTags" class="selected-tags"></div>
-        <div id="result"></div>
+    
+    <div class="bottom-section">
+        <div class="section-content">
+            <div id="result"></div>
+        </div>
     </div>
-
-
-<script src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
