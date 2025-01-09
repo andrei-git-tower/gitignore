@@ -33,21 +33,28 @@ document.getElementById('searchForm').addEventListener('submit', async function(
             console.error('JSON parsing error:', jsonError);
             throw new Error('Failed to parse templates data');
         }
-        const resultDiv = document.getElementById('result');
         
-        // Create sections for each term
+        const resultDiv = document.getElementById('result');
         let sections = [];
         const timestamp = new Date().toISOString().split('T')[0];
+        document.getElementById('result').classList.add('show');
 
-         document.getElementById('result').classList.add('show');
-        
         // Add header
         sections.push(
             `# gitignore file created for free with Git Tower`,
             `# Generated on ${timestamp}`,
             `# Includes: ${searchTerms.join(', ')}`,
-            '' // Add an empty line after the header
+            ''
         );
+
+        // Add universal patterns first
+        sections.push(
+            `### Universal ###`,
+            `# Common files that should be ignored in all projects`,
+            ''
+        );
+        sections.push(...insertEmptyLines(data.basic.universal));
+        sections.push('');
 
         // Process each search term
         searchTerms.forEach(searchTerm => {
