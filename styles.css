@@ -92,6 +92,7 @@ button:hover {
 }
 
 #result {
+    display: none; 
     margin-top: 0;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 16px;
@@ -100,6 +101,10 @@ button:hover {
     font-family: monospace;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+#result.show {
+    display: block;
 }
 
 .copy-button {
