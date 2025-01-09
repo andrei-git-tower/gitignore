@@ -420,7 +420,6 @@ async function initializeTerms() {
     try {
         const response = await fetch('./data/templates.json');
         const data = await response.json();
-        
         // Collect all terms from different categories
         allTerms = [
             ...Object.keys(data.frameworks || {}),
@@ -430,9 +429,12 @@ async function initializeTerms() {
             ...Object.keys(data.vcs || {}),
             ...Object.keys(data.build_tools || {}),
             ...Object.keys(data.package_managers || {}),
-            ...Object.keys(data.security_and_credentials || {})
+            ...Object.keys(data.security_and_credentials || {}),
+            ...Object.keys(data.cicd_tools || {}),
+            ...Object.keys(data.cloud_providers || {}),
+            ...Object.keys(data.data_science || {}),
+            ...Object.keys(data.game_engines || {})
         ];
-        
         // Remove duplicates
         allTerms = [...new Set(allTerms)];
     } catch (error) {
