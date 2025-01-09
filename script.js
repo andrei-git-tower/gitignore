@@ -36,6 +36,8 @@ document.getElementById('searchForm').addEventListener('submit', async function(
         // Create sections for each term
         let sections = [];
         const timestamp = new Date().toISOString().split('T')[0];
+
+         document.getElementById('result').classList.add('show');
         
         // Add header
         sections.push(
