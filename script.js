@@ -1,4 +1,6 @@
 let selectedTags = new Set();
+let currentSuggestions = []; // Array to store current suggestions
+let selectedSuggestionIndex = 0; // Track which suggestion is selected
 
 document.getElementById('searchForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -531,10 +533,18 @@ function handleSuggestionClick(term) {
 }
 
 
-// Optional: Add keyboard support for adding tags
+
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && this.value.trim()) {
+    if (e.key === 'Enter') {
         e.preventDefault();
-        addTag(this.value.trim());
+        const suggestionsContainer = document.getElementById('suggestions');
+        const firstSuggestion = suggestionsContainer.querySelector('.suggestion-item');
+        
+        if (firstSuggestion) {
+            // If there's a suggestion, use its text content
+            const suggestionText = firstSuggestion.textContent;
+            addTag(suggestionText);
+            suggestionsContainer.style.display = 'none';
+        }
     }
 });
