@@ -537,6 +537,14 @@ function handleSuggestionClick(term) {
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
+        
+        // If input is empty, submit the form
+        if (!this.value.trim()) {
+            document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+            return;
+        }
+
+        // Otherwise, handle suggestion selection
         const suggestionsContainer = document.getElementById('suggestions');
         const firstSuggestion = suggestionsContainer.querySelector('.suggestion-item');
         
