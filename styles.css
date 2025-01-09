@@ -58,7 +58,7 @@ input[type="text"] {
     border: 1px solid #ffffff;
     border-radius: 4px;
     margin-bottom: 16px;
-    background-color: #164067;
+    background-color: #09233c;
     color: #ffffff;
 }
 
@@ -186,13 +186,13 @@ button:hover {
 }
 
 .tag {
-    background-color: #e9ecef;
+    background-color: #ffffff;
     border-radius: 16px;
-    padding: 4px 12px;
+    padding: 0px 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    font-size: 12px;
+    color: #000000;
 }
 
 .tag-remove {
