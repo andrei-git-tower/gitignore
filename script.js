@@ -457,9 +457,9 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
         return;
     }
     
-    // Filter terms based on input
+    // Filter terms based on input AND exclude already selected terms
     const matchingTerms = allTerms.filter(term => 
-        term.toLowerCase().includes(input)
+        term.toLowerCase().includes(input) && !selectedTags.has(term)
     );
     
     // Display suggestions
