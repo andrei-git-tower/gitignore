@@ -1,7 +1,6 @@
 let selectedTags = new Set();
 let allTerms = [];
 let currentSuggestions = []; // Array to store current suggestions
-let selectedSuggestionIndex = 0; // Track which suggestion is selected
 let selectedSuggestionIndex = -1; // Track which suggestion is selected
 let visibleSuggestions = []; // Store current visible suggestions
 
