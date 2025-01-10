@@ -1,6 +1,11 @@
 let selectedTags = new Set();
+let allTerms = [];
 let currentSuggestions = []; // Array to store current suggestions
 let selectedSuggestionIndex = 0; // Track which suggestion is selected
+let selectedSuggestionIndex = -1; // Track which suggestion is selected
+let visibleSuggestions = []; // Store current visible suggestions
+
+initializeTerms();
 
 document.getElementById('searchForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -203,6 +208,104 @@ document.getElementById('searchForm').addEventListener('submit', async function(
         resultDiv.textContent = 'Error loading templates';
     }
 });
+
+// Add event listener for input changes
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const input = e.target.value.toLowerCase();
+    const suggestionsContainer = document.getElementById('suggestions');
+    suggestionsContainer.innerHTML = '';
+    selectedSuggestionIndex = -1; // Reset selection when input changes
+
+    if (input.length < 2) {
+        suggestionsContainer.style.display = 'none';
+        visibleSuggestions = [];
+        return;
+    }
+
+    // Filter terms based on input AND exclude already selected terms
+    visibleSuggestions = allTerms.filter(term =>
+        term.toLowerCase().includes(input) && !selectedTags.has(term)
+    );
+
+    // Display suggestions
+    if (visibleSuggestions.length > 0) {
+        visibleSuggestions.forEach((term, index) => {
+            const div = document.createElement('div');
+            div.className = 'suggestion-item';
+            div.textContent = term;
+            div.setAttribute('data-index', index);
+            div.addEventListener('click', () => {
+                addTag(term);
+                suggestionsContainer.style.display = 'none';
+            });
+            suggestionsContainer.appendChild(div);
+        });
+        suggestionsContainer.style.display = 'block';
+    } else {
+        suggestionsContainer.style.display = 'none';
+        visibleSuggestions = [];
+    }
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+        document.getElementById('suggestions').style.display = 'none';
+    }
+});
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    const suggestionsContainer = document.getElementById('suggestions');
+    const suggestions = suggestionsContainer.querySelectorAll('.suggestion-item');
+
+    switch(e.key) {
+        case 'ArrowDown':
+            e.preventDefault();
+            if (suggestionsContainer.style.display === 'block') {
+                selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, visibleSuggestions.length - 1);
+                updateSuggestionHighlight();
+            }
+            break;
+
+        case 'ArrowUp':
+            e.preventDefault();
+            if (suggestionsContainer.style.display === 'block') {
+                selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
+                updateSuggestionHighlight();
+            }
+            break;
+
+        case 'Enter':
+            e.preventDefault();
+            if (!this.value.trim()) {
+                document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+                return;
+            }
+            if (selectedSuggestionIndex >= 0 && selectedSuggestionIndex < visibleSuggestions.length) {
+                addTag(visibleSuggestions[selectedSuggestionIndex]);
+                suggestionsContainer.style.display = 'none';
+                selectedSuggestionIndex = -1;
+                this.value = '';
+            } else if (visibleSuggestions.length > 0) {
+                addTag(visibleSuggestions[0]);
+                suggestionsContainer.style.display = 'none';
+                this.value = '';
+            }
+            break;
+    }
+});
+
+function updateSuggestionHighlight() {
+    const suggestions = document.querySelectorAll('.suggestion-item');
+    suggestions.forEach((suggestion, index) => {
+        if (index === selectedSuggestionIndex) {
+            suggestion.classList.add('selected');
+        } else {
+            suggestion.classList.remove('selected');
+        }
+    });
+}
+
 
 // Helper function to get framework descriptions
 function getFrameworkDescription(framework) {
@@ -419,9 +522,6 @@ function copyToClipboard() {
     }
 }
 
-// Add this at the start of your script
-let allTerms = [];
-
 // Function to initialize terms from your JSON data
 async function initializeTerms() {
     try {
@@ -448,54 +548,6 @@ async function initializeTerms() {
         console.error('Error initializing terms:', error);
     }
 }
-
-// Call this when your script loads
-initializeTerms();
-
-// Add event listener for input changes
-document.getElementById('searchInput').addEventListener('input', function(e) {
-    const input = e.target.value.toLowerCase();
-    const suggestionsContainer = document.getElementById('suggestions');
-    
-    // Clear previous suggestions
-    suggestionsContainer.innerHTML = '';
-    
-    // If input is less than 2 characters, hide suggestions
-    if (input.length < 2) {
-        suggestionsContainer.style.display = 'none';
-        return;
-    }
-    
-    // Filter terms based on input AND exclude already selected terms
-    const matchingTerms = allTerms.filter(term => 
-        term.toLowerCase().includes(input) && !selectedTags.has(term)
-    );
-    
-    // Display suggestions
-    if (matchingTerms.length > 0) {
-        matchingTerms.forEach(term => {
-            const div = document.createElement('div');
-            div.className = 'suggestion-item';
-            div.textContent = term;
-            div.addEventListener('click', () => {
-                addTag(term);
-                // Hide suggestions
-                suggestionsContainer.style.display = 'none';
-            });
-            suggestionsContainer.appendChild(div);
-        });
-        suggestionsContainer.style.display = 'block';
-    } else {
-        suggestionsContainer.style.display = 'none';
-    }
-});
-
-// Hide suggestions when clicking outside
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.search-container')) {
-        document.getElementById('suggestions').style.display = 'none';
-    }
-});
 
 function addTag(term) {
     if (!selectedTags.has(term)) {
@@ -540,28 +592,3 @@ function renderTags() {
 function handleSuggestionClick(term) {
     addTag(term);
 }
-
-
-
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        
-        // If input is empty, submit the form
-        if (!this.value.trim()) {
-            document.getElementById('searchForm').dispatchEvent(new Event('submit'));
-            return;
-        }
-
-        // Otherwise, handle suggestion selection
-        const suggestionsContainer = document.getElementById('suggestions');
-        const firstSuggestion = suggestionsContainer.querySelector('.suggestion-item');
-        
-        if (firstSuggestion) {
-            // If there's a suggestion, use its text content
-            const suggestionText = firstSuggestion.textContent;
-            addTag(suggestionText);
-            suggestionsContainer.style.display = 'none';
-        }
-    }
-});
