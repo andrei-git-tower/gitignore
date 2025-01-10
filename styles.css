@@ -207,3 +207,8 @@ button {
 .tag-remove:hover {
     color: #ff4444;
 }
+
+.suggestion-item.selected {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
