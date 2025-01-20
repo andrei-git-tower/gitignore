@@ -215,11 +215,11 @@ function downloadFile() {
     const preElement = document.querySelector('#result pre');
     if (preElement) {
         const content = preElement.textContent;
-        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const blob = new Blob([content], { type: 'application/octet-stream' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'gitignore'; // Remove the leading dot
+        a.download = 'gitignore';
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
