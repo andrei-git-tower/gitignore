@@ -215,15 +215,23 @@ function downloadFile() {
     const preElement = document.querySelector('#result pre');
     if (preElement) {
         const content = preElement.textContent;
-        const blob = new Blob([content], { type: 'text/plain' });
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = '.gitignore';
+        a.download = 'gitignore'; // Remove the leading dot
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
+
+        // Add visual feedback
+        const downloadButton = document.querySelector('.download-button');
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = 'Downloaded!';
+        setTimeout(() => {
+            downloadButton.textContent = originalText;
+        }, 2000);
     }
 }
 
