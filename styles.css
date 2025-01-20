@@ -216,12 +216,14 @@ button {
 .button-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
-    margin-top: 20px;
+    margin: 20px auto;
+    width: 100%;
 }
 
-.download-button {
-    /* Copy the same styles as your copy-button */
+.download-button,
+.copy-button {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -229,6 +231,26 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    height: 40px; /* Ensure both buttons have the same height */
+    line-height: 20px; /* Center text vertically */
+}
+
+.download-button:hover,
+.copy-button:hover {
+    background-color: #45a049;
+}
+
+.download-button {
+    background-color: #ffc600;
+    color: #164067;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
 }
 
 .download-button:hover {
