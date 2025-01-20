@@ -65,9 +65,119 @@ document.addEventListener('DOMContentLoaded', function() {
                         sections.push(...insertEmptyLines(data.frameworks[searchTerm]));
                         sections.push('');
                     }
-                    // ... [Continue with all other category checks]
-                    // Note: All the if blocks for different categories would go here
-                    // I'll include them in Part 2 for better organization
+                    if (data.os[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getOSDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.os[searchTerm]));
+                        sections.push('');
+                    }
+                    if (data.environment_specific_files[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getEnvironmentDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.environment_specific_files[searchTerm]));
+                        sections.push('');
+                    }
+                    if (data.editors[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getEditorDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.editors[searchTerm]));
+                        sections.push('');
+                    }
+                    if (data.vcs[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getVCSDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.vcs[searchTerm]));
+                        sections.push('');
+                    }
+                    if (data.build_tools[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getBuildToolDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.build_tools[searchTerm]));
+                        sections.push('');
+                    }
+                    if (data.package_managers[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getPackageManagerDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.package_managers[searchTerm]));
+                        sections.push('');
+                    }
+                    if (data.security_and_credentials[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getSecurityAndCredentialsDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.security_and_credentials[searchTerm]));
+                        sections.push('');
+                    }
+        
+                    if (data.game_engines[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getGameEngineDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.game_engines[searchTerm]));
+                        sections.push('');
+                    }
+                
+                    if (data.data_science[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getDataScienceDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.data_science[searchTerm]));
+                        sections.push('');
+                    }
+                
+                    if (data.cloud_providers[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getCloudProviderDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.cloud_providers[searchTerm]));
+                        sections.push('');
+                    }
+                
+                    if (data.cicd_tools[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getCICDToolDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.cicd_tools[searchTerm]));
+                        sections.push('');
+                    }
+                
+                    if (data.basic[searchTerm]) {
+                        sections.push(
+                            `### ${capitalize(searchTerm)} ###`,
+                            `# ${getBasicDescription(searchTerm)}`,
+                            ''
+                        );
+                        sections.push(...insertEmptyLines(data.basic[searchTerm]));
+                        sections.push('');
+                    }
                 });
 
                 if (sections.length > 4) {
