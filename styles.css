@@ -103,23 +103,6 @@ button {
     display: block;
 }
 
-.copy-button {
-    background-color: #ffc600;
-    color: #164067;
-    border: none;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto;
-}
-
-.copy-button:hover {
-    background-color: #e6b200;
-}
-
 .search-container {
     position: relative;
     width: 75%; 
@@ -225,7 +208,7 @@ button {
 .download-button,
 .copy-button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #ffc600;
     color: white;
     border: none;
     border-radius: 4px;
@@ -235,9 +218,8 @@ button {
     line-height: 20px; /* Center text vertically */
 }
 
-.download-button:hover,
-.copy-button:hover {
-    background-color: #45a049;
+.download-button:hover{
+    background-color: #e6b200;
 }
 
 .download-button {
@@ -251,8 +233,4 @@ button {
     cursor: pointer;
     display: block;
     margin: 20px auto;
-}
-
-.download-button:hover {
-    background-color: #45a049;
 }
