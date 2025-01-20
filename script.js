@@ -190,13 +190,16 @@ document.getElementById('searchForm').addEventListener('submit', async function(
             const formattedOutput = sections.join('\n');
             resultDiv.innerHTML = `<pre>${formattedOutput}</pre>`;
             
-            // Remove any existing copy buttons
-            const existingButtons = document.querySelectorAll('.copy-button');
+            // Remove any existing buttons
+            const existingButtons = document.querySelectorAll('.copy-button, .download-button');
             existingButtons.forEach(button => button.remove());
             
-            // Add new copy button
+            // Add both buttons in a container
             resultDiv.insertAdjacentHTML('afterend', `
-                <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+                <div class="button-container">
+                    <button class="download-button" onclick="downloadFile()">Download File</button>
+                    <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+                </div>
             `);
         } else {
             resultDiv.innerHTML = 'No matching templates found';
@@ -207,6 +210,22 @@ document.getElementById('searchForm').addEventListener('submit', async function(
         resultDiv.textContent = 'Error loading templates';
     }
 });
+
+function downloadFile() {
+    const preElement = document.querySelector('#result pre');
+    if (preElement) {
+        const content = preElement.textContent;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = '.gitignore';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }
+}
 
 // Add event listener for input changes
 document.getElementById('searchInput').addEventListener('input', function(e) {
