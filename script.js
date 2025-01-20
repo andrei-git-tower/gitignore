@@ -16,7 +16,13 @@ document.getElementById('searchForm').addEventListener('submit', async function(
 
         if (searchTerms.length === 0) {
             const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = 'Please select at least one item';
+            resultDiv.innerHTML = '<div class="error-message">⚠️ Please select at least one item to generate a .gitignore file</div>';
+            resultDiv.classList.add('show'); // Make sure it's visible
+            // Remove any existing buttons if they exist
+            const existingButtons = document.querySelectorAll('.copy-button, .download-button');
+            existingButtons.forEach(button => button.remove());
+            // Scroll to the error message
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
             return;
         }
         
