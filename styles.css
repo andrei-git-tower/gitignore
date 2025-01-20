@@ -207,22 +207,6 @@ button {
 
 .download-button,
 .copy-button {
-    padding: 10px 20px;
-    background-color: #ffc600;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    height: 40px; /* Ensure both buttons have the same height */
-    line-height: 20px; /* Center text vertically */
-}
-
-.download-button:hover{
-    background-color: #e6b200;
-}
-
-.download-button {
     background-color: #ffc600;
     color: #164067;
     border: none;
@@ -233,4 +217,9 @@ button {
     cursor: pointer;
     display: block;
     margin: 20px auto;
+}
+
+.download-button:hover,
+.copy-button:hover {
+    background-color: #e6b200;
 }
