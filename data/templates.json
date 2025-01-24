@@ -518,7 +518,7 @@
     "express": [
       "node_modules/",
       "logs/",
-      "*.log",
+      "*.log"
     ],
     "meteor": [
       ".meteor/local/",
@@ -527,7 +527,7 @@
     ],
     "nuxt_js": [
       ".nuxt/",
-      "node_modules/",
+      "node_modules/"
     ],
     "javascript": [
       "node_modules/",
