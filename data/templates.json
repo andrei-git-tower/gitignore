@@ -747,7 +747,7 @@
       "cache/",
       "artifacts/",
       "*.bin",
-      "*.abi",
+      "*.abi"
     ],
     "ada": [
       "*.ali",
@@ -771,7 +771,7 @@
     "apex": [
       ".sfdx/",
       "*.log",
-      ".vscode/",
+      ".vscode/"
     ],
     "prolog": [
       "*.pl~",
@@ -1921,7 +1921,7 @@
         ".gradle/notifications/",
         "gradle/verification-metadata.xml",
         "!src/**/build/",  
-        "*.hprof",
+        "*.hprof"
     ],
     "maven": [
         "# Maven",
@@ -2243,7 +2243,7 @@
         "!.yarn/patches",
         "!.yarn/plugins",
         "!.yarn/sdks",
-        "!.yarn/versions",
+        "!.yarn/versions"
     ],
     "homebrew": [
         "Brewfile.lock.json",
@@ -2325,7 +2325,7 @@
         "Package.resolved",
         ".swiftpm/",
         ".build-cache/"
-    ]
+    ],
     "pnpm": [
         "# PNPM",
         "pnpm-lock.yaml",
