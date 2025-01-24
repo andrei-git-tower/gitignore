@@ -1139,7 +1139,7 @@
         ".vscode-server/",
         ".vscode/sftp.json",
         ".vscode/tags",
-        ".devcontainer/",
+        ".devcontainer/"
     ],
     "visual_studio": [
         "# Visual Studio",
@@ -1317,7 +1317,7 @@
         ".sts4-cache/",
         ".pydevproject",
         ".texlipse",
-        "*_flymake.*",
+        "*_flymake.*"
     ],
     "netbeans": [
         "# NetBeans",
